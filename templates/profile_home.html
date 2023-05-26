@@ -19,14 +19,23 @@
         p {
             margin-bottom: 30px;
         }
+        .logout-btn {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Welcome, {{ user.username }}</h1>
-        <a href="{% url 'home' %}" class="btn btn-primary">Logout</a>
-        <a href="{% url 'goals' %}" class="btn btn-primary">Get all Goals</a>
+        <a href="{% url 'home' %}" class="btn btn-primary logout-btn">Logout</a>
+        <a href="{% url 'goals' %}" class="btn btn-primary">View all Goals</a>
+        <a href="{% url 'create_goals' %}" class="btn btn-primary">Create a Goal</a>
+        <a href="{% url 'view_completed_goals' %}" class="btn btn-primary">View Completed Goals</a>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </body>
 </html>
+

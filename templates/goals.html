@@ -26,7 +26,7 @@
         {% for goal in goals %}
           <tr>
             <td>{{ goal.id }}</td>
-            <td>{{ goal.description }}</td>
+            <td>{{ goal.goal }}</td>
             <td>{{ goal.start_date }}</td>
             <td>{{ goal.end_date }}</td>
             <td><input type="checkbox" {% if goal.completed %}checked{% endif %} disabled></td>

@@ -1,0 +1,41 @@
+<!-- create_goals.html -->
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Goals</title>
+    <!-- Aggiungi i link ai file CSS di Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Crea un nuovo goal</h1>
+
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="goal">Obiettivo:</label>
+                <input type="text" class="form-control" id="goal" name="goal" required>
+            </div>
+            <div class="form-group">
+                <label for="start_date">Data di inizio:</label>
+                <input type="date" class="form-control" id="start_date" name="start_date" required>
+            </div>
+            <div class="form-group">
+                <label for="end_date">Data di fine:</label>
+                <input type="date" class="form-control" id="end_date" name="end_date" required>
+            </div>
+            <div class="form-group">
+                <label for="completed">Completato:</label>
+                <select class="form-control" id="completed" name="completed" required>
+                    <option value="True">Sì</option>
+                    <option value="False">No</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Crea Goal</button>
+        </form>
+    </div>
+</body>
+</html>
