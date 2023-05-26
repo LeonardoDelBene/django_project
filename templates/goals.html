@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Goals Dashboard</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <style>
+    .completed {
+      text-decoration: line-through;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Goals Dashboard</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Goal</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Completed</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for goal in goals %}
+          <tr>
+            <td>{{ goal.id }}</td>
+            <td>{{ goal.description }}</td>
+            <td>{{ goal.start_date }}</td>
+            <td>{{ goal.end_date }}</td>
+            <td><input type="checkbox" {% if goal.completed %}checked{% endif %} disabled></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
