@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Set</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f7f7f7;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            margin-top: 100px;
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .btn-primary {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Create Set</h1>
+        <form method="post" action="{% url 'create_set' exercise_id %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="reps">Repetitions:</label>
+                <input type="number" class="form-control" id="reps" name="reps" required>
+            </div>
+            <div class="form-group">
+                <label for="weight">Weight:</label>
+                <input type="number" class="form-control" id="weight" name="weight">
+            </div>
+            <div class="form-group">
+                <label for="recovery_time">Recovery Time:</label>
+                <input type="number" class="form-control" id="recovery_time" name="recovery_time" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Create</button>
+            <a href="{% url 'exercise_detail' exercise_id %}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>
+

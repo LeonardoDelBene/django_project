@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Set Detail</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f7f7f7;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            margin-top: 100px;
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        p {
+            margin-bottom: 10px;
+        }
+        .btn-primary {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Set Detail</h1>
+        <p><strong>Exercise:</strong> {{ set.exercise.name }}</p>
+        <p><strong>Reps:</strong> {{ set.reps }}</p>
+        <p><strong>Weight:</strong> {{ set.weight }}</p>
+        <p><strong>Recovery Time:</strong> {{ set.recovery_time }}</p>
+        <a href="{% url 'profile_home' %}" class="btn btn-secondary">Back to Home</a>
+    </div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>
