@@ -35,7 +35,7 @@
                 <li>{{ exercise.name }}</li>
             {% endfor %}
         </ul>
-        <a href="{% url 'create_exercise' workout_id%} " class="btn btn-primary">Add Exercise</a>
+        <a href="{% url 'create_exercise' workout_id=workout_id nExercise=nes%} " class="btn btn-primary">Add Exercise</a>
         <a href="{% url 'profile_home' %}" class="btn btn-secondary">Back to Home</a>
     </div>
 

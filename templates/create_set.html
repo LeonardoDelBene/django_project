@@ -27,7 +27,7 @@
 <body>
     <div class="container">
         <h1>Create Set</h1>
-        <form method="post" action="{% url 'create_set' exercise_id %}">
+        <form method="post" action="{% url 'create_set' workout_id exercise_id %}">
             {% csrf_token %}
             <div class="form-group">
                 <label for="reps">Repetitions:</label>
@@ -35,14 +35,14 @@
             </div>
             <div class="form-group">
                 <label for="weight">Weight:</label>
-                <input type="number" class="form-control" id="weight" name="weight">
+                <input type="text" class="form-control" id="weight" name="weight">
             </div>
             <div class="form-group">
                 <label for="recovery_time">Recovery Time:</label>
                 <input type="number" class="form-control" id="recovery_time" name="recovery_time" required>
             </div>
             <button type="submit" class="btn btn-primary">Create</button>
-            <a href="{% url 'exercise_detail' exercise_id %}" class="btn btn-secondary">Cancel</a>
+            <a href="{% url 'exercise_detail' workout_id exercise_id %}" class="btn btn-secondary">Cancel</a>
         </form>
     </div>
 

@@ -27,7 +27,7 @@
 <body>
     <div class="container">
         <h1>Create Exercise</h1>
-        <form method="post" action="{% url 'create_exercise' workout_id %}">
+        <form method="post" action="{% url 'create_exercise' workout_id=workout_id  nExercise=nExercise%}">
             {% csrf_token %}
             <div class="form-group">
                 <label for="name">Exercise Name:</label>
@@ -37,15 +37,12 @@
                 <label for="description">Description:</label>
                 <textarea class="form-control" id="description" name="description"></textarea>
             </div>
-            <div class="form-group">
-                <label for="workout">Workout:</label>
-                <input type="number" class="form-control" id="workout">
-            </div>
             <button type="submit" class="btn btn-primary">Create</button>
-            <a href="{% url 'profile_home' %}" class="btn btn-secondary">Cancel</a>
+            <a href="{% url 'exercise_detail' workout_id=workout_id exercise_id=exercise_id %}" class="btn btn-secondary">Cancel</a>
         </form>
     </div>
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </body>
 </html>
+
