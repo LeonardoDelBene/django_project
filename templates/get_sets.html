@@ -48,6 +48,7 @@
                     <td>{{ set.weight }}</td>
                     <td>{{ set.recovery_time }}</td>
                     <td>
+                        <a href="{% url 'set_weight' workout_id nExercise set.id  %}" class="btn btn-primary">Set Weight</a>
                     </td>
                 </tr>
                 {% endfor %}

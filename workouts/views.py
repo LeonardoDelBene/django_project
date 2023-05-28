@@ -115,3 +115,23 @@ def get_sets(request, workout_id, nExercise):
         'nExercise': nExercise,
     }
     return render(request, 'get_sets.html', context=context)
+
+def set_weight(request,workout_id, nExercise, set_id):
+    if(request.method=='POST'):
+        set = Set.objects.get(id=set_id)
+        set.weight = request.POST.get('weight')
+        set.save()
+        exercise = Exercise.objects.get(workout_id=workout_id, nExercise=nExercise)
+        sets = Set.objects.filter(exercise=exercise, )
+        context = {
+            'sets': sets,
+            'workout_id': workout_id,
+            'nExercise': nExercise,
+        }
+        return render(request, 'get_sets.html', context=context)
+    context = {
+        'workout_id': workout_id,
+        'nExercise': nExercise,
+        'set_id': set_id,
+    }
+    return render(request, 'set_weight.html', context=context)
