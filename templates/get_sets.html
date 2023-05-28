@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Exercise Sets</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f7f7f7;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            margin-top: 100px;
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        table {
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 10px;
+        }
+        .btn-primary {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Exercise Sets</h1>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Set Number</th>
+                    <th>Repetitions</th>
+                    <th>Weight</th>
+                    <th>Rest Time</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for set in sets %}
+                <tr>
+                    <td>{{ set.id }}</td>
+                    <td>{{ set.reps }}</td>
+                    <td>{{ set.weight }}</td>
+                    <td>{{ set.recovery_time }}</td>
+                    <td>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'exercise_list' workout_id=workout_id %}" class="btn btn-secondary">Back to Exercise List</a>
+    </div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>

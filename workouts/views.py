@@ -100,10 +100,18 @@ def get_workouts(request):
 def get_exercises(request, workout_id):
     workout = Workout.objects.get(id=workout_id)
     exercises = Exercise.objects.filter(workout=workout)
-    nExercise= exercises.count() +1
     context = {
         'exercises': exercises,
         'workout': workout,
-        'nExercise': nExercise,
     }
     return render(request, 'get_exercises.html', context=context)
+
+def get_sets(request, workout_id, nExercise):
+    exercise = Exercise.objects.get(workout_id=workout_id, nExercise=nExercise)
+    sets = Set.objects.filter(exercise=exercise,)
+    context = {
+        'sets': sets,
+        'workout_id': workout_id,
+        'nExercise': nExercise,
+    }
+    return render(request, 'get_sets.html', context=context)

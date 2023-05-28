@@ -48,6 +48,7 @@
                         <td>{{ exercise.name }}</td>
                         <td>{{ exercise.description }}</td>
                         <td>
+                            <a href="{% url 'set_list' workout.id exercise.nExercise %}" class="btn btn-primary">View Set</a>
                         </td>
                     </tr>
                 {% endfor %}

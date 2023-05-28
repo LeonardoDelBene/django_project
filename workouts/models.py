@@ -16,6 +16,9 @@ class Exercise(models.Model):
     description=models.TextField(blank=True, null=True)
     sets=models.ManyToManyField(to='Set', related_name='serie')
 
+    def get_nExercise(self):
+        return self.nExercise
+
 class Set(models.Model):
     id=models.AutoField(primary_key=True)
     exercise=models.ForeignKey('Exercise', on_delete=models.CASCADE)
