@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Workout Detail</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f7f7f7;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            margin-top: 100px;
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        table {
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+        }
+        .btn-primary {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Workout Detail</h1>
+        <p><strong>Name:</strong> {{ workout.name }}</p>
+        <p><strong>User:</strong> {{ workout.user.username }}</p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Exercise ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for exercise in exercises %}
+                    <tr>
+                        <td>{{ exercise.id }}</td>
+                        <td>{{ exercise.name }}</td>
+                        <td>{{ exercise.description }}</td>
+                        <td>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="{% url 'get_workouts' %}" class="btn btn-secondary">Back to Workout List</a>
+    </div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>

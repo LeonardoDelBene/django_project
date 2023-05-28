@@ -32,7 +32,7 @@
         <p><strong>Weight:</strong> {{ set.weight }}</p>
         <p><strong>Recovery Time:</strong> {{ set.recovery_time }}</p>
         <a href="{% url 'profile_home' %}" class="btn btn-secondary">Back to Home</a>
-        <a href="{% url 'exercise_detail' workout_id exercise_id%}" class="btn btn-primary">Back to Exercise</a>
+        <a href="{% url 'exercise_detail' workout_id nExercise%}" class="btn btn-primary">Back to Exercise</a>
     </div>
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>

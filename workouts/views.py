@@ -1,3 +1,5 @@
+from http.client import HTTPResponse
+
 from django.shortcuts import render
 
 # Create your views here.
@@ -12,48 +14,59 @@ def create_workout(request):
     if request.method == 'POST':
         user = request.user
         name = request.POST['name']
-        workout = Workout.objects.create(user=user, name=name)
-        return redirect('workout_detail', workout_id=workout.id)
+        workout = Workout.objects.filter(user=user, name=name).first()
+        if workout is None:
+            workout = Workout.objects.create(user=user, name=name)
+            return redirect('workout_detail', workout_id=workout.id)
+        else:
+            return redirect('workout_detail', workout_id=workout.id)
+
 
     return render(request, 'create_workout.html')
 
 
 def create_exercise(request, workout_id, nExercise):
-    workout = get_object_or_404(Workout, id=workout_id)
+    workout = Workout.objects.get(id=workout_id)
     if request.method == 'POST':
         name = request.POST['name']
         description = request.POST.get('description')
-        Exercise.objects.filter(workout=workout, nExercise=nExercise).update(name=name, description=description)
+
+        # Verifica se l'esercizio esiste già
         exercise = Exercise.objects.filter(workout=workout, nExercise=nExercise).first()
-        return redirect('exercise_detail', workout_id=workout_id, exercise_id=exercise.id)
-    exercise = Exercise.objects.create(workout=workout, nExercise=nExercise)
+        if exercise is None:
+            exercise = Exercise.objects.create(workout=workout, nExercise=nExercise, name=name, description=description)
+            return redirect('exercise_detail', workout_id=workout_id, nExercise=nExercise)
+        else:
+            # L'esercizio esiste già, puoi gestire questa situazione a tua discrezione
+            # Ad esempio, puoi mostrare un messaggio di errore o reindirizzare a un'altra pagina
+            return redirect('exercise_detail', workout_id=workout_id, nExercise=nExercise)
+
     context = {
         'workout_id': workout_id,
         'nExercise': nExercise,
-        'exercise_id': exercise.id,
     }
     return render(request, 'create_exercise.html', context=context)
 
-def create_set(request,workout_id, exercise_id):
+
+def create_set(request,workout_id, nExercise):
     if request.method == 'POST':
-        exercise = Exercise.objects.get(id=exercise_id)
+        exercise = Exercise.objects.get(workout_id=workout_id, nExercise=nExercise)
         reps = request.POST.get('reps')
         weight = request.POST.get('weight')
         recovery_time = request.POST.get('recovery_time')
 
-        set_obj = Set.objects.create(exercise=exercise, reps=reps, weight=weight, recovery_time=recovery_time)
+        set=Set.objects.create(exercise=exercise, reps=reps, weight=weight, recovery_time=recovery_time)
 
-        return redirect('set_detail',workout_id=workout_id,exercise_id=exercise_id, set_id=set_obj.id)
+        return redirect('set_detail',workout_id=workout_id, nExercise=nExercise, set_id=set.id)
 
-    exercise = Exercise.objects.get(id=exercise_id)
     context = {
-        'exercise_id': exercise.id,
+        'nExercise': nExercise,
         'workout_id': workout_id,
     }
     return render(request, 'create_set.html', context)
 
-def exercise_detail(request, workout_id, exercise_id):
-    exercise = get_object_or_404(Exercise, pk=exercise_id)
+def exercise_detail(request, workout_id, nExercise):
+    exercise = Exercise.objects.get(workout_id=workout_id, nExercise=nExercise)
     context = {
         'exercise': exercise,
         'workout_id': workout_id,
@@ -61,18 +74,36 @@ def exercise_detail(request, workout_id, exercise_id):
     return render(request, 'exercise_detail.html', context)
 
 def workout_detail(request, workout_id):
-    n = get_object_or_404(Exercise, pk=workout_id).nExercise + 1
+    n = Exercise.objects.filter(workout_id=workout_id).count() + 1
     context={
         'workout_id': workout_id,
         'nes': n
     }
     return render(request, 'workout_detail.html',context=context)
 
-def set_detail(request,workout_id, exercise_id, set_id):
+def set_detail(request,workout_id, nExercise, set_id):
     set_obj = get_object_or_404(Set, pk=set_id)
     context = {
         'set': set_obj,
         'workout_id': workout_id,
-        'exercise_id': exercise_id,
+        'nExercise': nExercise,
     }
     return render(request, 'set_detail.html', context=context)
+
+def get_workouts(request):
+    workouts = Workout.objects.filter(user=request.user)
+    context = {
+        'workouts': workouts,
+    }
+    return render(request, 'get_workouts.html', context=context)
+
+def get_exercises(request, workout_id):
+    workout = Workout.objects.get(id=workout_id)
+    exercises = Exercise.objects.filter(workout=workout)
+    nExercise= exercises.count() +1
+    context = {
+        'exercises': exercises,
+        'workout': workout,
+        'nExercise': nExercise,
+    }
+    return render(request, 'get_exercises.html', context=context)

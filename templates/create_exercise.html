@@ -38,7 +38,7 @@
                 <textarea class="form-control" id="description" name="description"></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Create</button>
-            <a href="{% url 'exercise_detail' workout_id=workout_id exercise_id=exercise_id %}" class="btn btn-secondary">Cancel</a>
+            <a href="{% url 'exercise_detail' workout_id=workout_id nExercise=nExercise %}" class="btn btn-secondary">Cancel</a>
         </form>
     </div>
 
