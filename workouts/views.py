@@ -6,7 +6,7 @@ from django.shortcuts import render
 from django.shortcuts import render, redirect
 from django.template import context
 
-from .models import Workout, Exercise, Set
+from .models import Workout, Exercise, Set, Weight_Tracking
 from django.shortcuts import render, get_object_or_404
 
 
@@ -116,10 +116,15 @@ def get_sets(request, workout_id, nExercise):
     }
     return render(request, 'get_sets.html', context=context)
 
+
+
+
+
 def set_weight(request,workout_id, nExercise, set_id):
     if(request.method=='POST'):
         set = Set.objects.get(id=set_id)
         set.weight = request.POST.get('weight')
+        weight_track= Weight_Tracking.objects.create(set=set, weight=set.weight)
         set.save()
         exercise = Exercise.objects.get(workout_id=workout_id, nExercise=nExercise)
         sets = Set.objects.filter(exercise=exercise, )
@@ -135,3 +140,14 @@ def set_weight(request,workout_id, nExercise, set_id):
         'set_id': set_id,
     }
     return render(request, 'set_weight.html', context=context)
+
+def get_weight_history(request,workout_id, nExercise ,set_id):
+    set = Set.objects.get(id=set_id)
+    weight_track = Weight_Tracking.objects.filter(set=set)
+    context = {
+        'weight_track': weight_track,
+        'set': set,
+        'workout_id': workout_id,
+        'nExercise': nExercise,
+    }
+    return render(request, 'get_weight_history.html', context=context)

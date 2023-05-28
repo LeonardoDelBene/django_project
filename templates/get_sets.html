@@ -37,7 +37,8 @@
                     <th>Repetitions</th>
                     <th>Weight</th>
                     <th>Rest Time</th>
-                    <th>Actions</th>
+                    <th>Set Weight</th>
+                    <th>Weight History</th>
                 </tr>
             </thead>
             <tbody>
@@ -49,6 +50,9 @@
                     <td>{{ set.recovery_time }}</td>
                     <td>
                         <a href="{% url 'set_weight' workout_id nExercise set.id  %}" class="btn btn-primary">Set Weight</a>
+                    </td>
+                    <td>
+                        <a href="{% url 'weight_history' workout_id nExercise set.id%}"class="btn btn-primary"
                     </td>
                 </tr>
                 {% endfor %}
