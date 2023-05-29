@@ -24,17 +24,24 @@
             top: 10px;
             right: 10px;
         }
+
+        .btn-custom {
+        background-color:blueviolet;
+        color: white;
+        }
+
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Welcome, {{ user.username }}</h1>
-        <a href="{% url 'home' %}" class="btn btn-primary logout-btn">Logout</a>
-        <a href="{% url 'goals' %}" class="btn btn-primary">View all Goals</a>
-        <a href="{% url 'create_goals' %}" class="btn btn-primary">Create a Goal</a>
-        <a href="{% url 'view_completed_goals' %}" class="btn btn-primary">View Completed Goals</a>
-        <a href="{% url 'create_workout' %}" class="btn btn-primary">Create a Workout</a>
-        <a href="{% url 'get_workouts' %}"class="btn btn-primary">View Workout</a>
+        <a href="{% url 'home' %}" class="btn btn-secondary logout-btn">Logout</a>
+        <a href="{% url 'goals' %}" class="btn btn-custom" >View all Goals</a>
+        <a href="{% url 'create_goals' %}" class="btn btn-custom">Create a Goal</a>
+        <a href="{% url 'view_completed_goals' %}" class="btn btn-custom">View Completed Goals</a>
+        <a href="{% url 'view_incomplete_goals' %}" class="btn btn-custom">View Incomplete Goals</a>
+        <a href="{% url 'create_workout' %}" class="mt-2 btn btn-primary">Create a Workout</a>
+        <a href="{% url 'get_workouts' %}"class="mt-2 btn btn-primary">View Workout</a>
     </div>
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>

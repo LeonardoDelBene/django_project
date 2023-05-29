@@ -31,7 +31,7 @@
         <p><strong>User:</strong> {{ workout.user.username }}</p>
         <p><strong>Exercises:</strong></p>
         <ul>
-            {% for exercise in workout.exercises.all %}
+            {% for exercise in exercises %}
                 <li>{{ exercise.name }}</li>
             {% endfor %}
         </ul>

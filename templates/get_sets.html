@@ -44,15 +44,15 @@
             <tbody>
                 {% for set in sets %}
                 <tr>
-                    <td>{{ set.id }}</td>
+                    <td>{{ set.nSet }}</td>
                     <td>{{ set.reps }}</td>
-                    <td>{{ set.weight }}</td>
-                    <td>{{ set.recovery_time }}</td>
+                    <td>{{ set.weight }} Kg</td>
+                    <td>{{ set.recovery_time }} seconds </td>
                     <td>
                         <a href="{% url 'set_weight' workout_id nExercise set.id  %}" class="btn btn-primary">Set Weight</a>
                     </td>
                     <td>
-                        <a href="{% url 'weight_history' workout_id nExercise set.id%}"class="btn btn-primary"
+                        <a href="{% url 'weight_history' workout_id nExercise set.id%}"class="btn btn-primary">View Weight History</a>
                     </td>
                 </tr>
                 {% endfor %}

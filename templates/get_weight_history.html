@@ -27,6 +27,11 @@
         th {
             background-color: #f2f2f2;
         }
+        .back-btn{
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+        }
     </style>
 </head>
 <body>
@@ -51,7 +56,7 @@
             </tbody>
         </table>
     </div>
-    <a href="{% url 'set_list' workout_id nExercise %}" class="btn btn-primary">Set Weight</a>
+    <a href="{% url 'set_list' workout_id nExercise %}" class="btn btn-secondary back-btn">Back to Set List</a>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </body>
 </html>

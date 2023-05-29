@@ -54,8 +54,8 @@ def create_set(request,workout_id, nExercise):
         reps = request.POST.get('reps')
         weight = request.POST.get('weight')
         recovery_time = request.POST.get('recovery_time')
-
-        set=Set.objects.create(exercise=exercise, reps=reps, weight=weight, recovery_time=recovery_time)
+        nSet=Set.objects.filter(exercise=exercise).count()+1
+        set=Set.objects.create(exercise=exercise,nSet=nSet, reps=reps, weight=weight, recovery_time=recovery_time)
 
         return redirect('set_detail',workout_id=workout_id, nExercise=nExercise, set_id=set.id)
 
@@ -67,15 +67,21 @@ def create_set(request,workout_id, nExercise):
 
 def exercise_detail(request, workout_id, nExercise):
     exercise = Exercise.objects.get(workout_id=workout_id, nExercise=nExercise)
+    sets=Set.objects.filter(exercise=exercise)
     context = {
         'exercise': exercise,
         'workout_id': workout_id,
+        'sets': sets,
     }
     return render(request, 'exercise_detail.html', context)
 
 def workout_detail(request, workout_id):
     n = Exercise.objects.filter(workout_id=workout_id).count() + 1
+    workout=Workout.objects.get(id=workout_id)
+    exercises=Exercise.objects.filter(workout_id=workout_id)
     context={
+        'workout': workout,
+        'exercises': exercises,
         'workout_id': workout_id,
         'nes': n
     }

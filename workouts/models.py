@@ -20,6 +20,7 @@ class Exercise(models.Model):
 class Set(models.Model):
     id=models.AutoField(primary_key=True)
     exercise=models.ForeignKey('Exercise', on_delete=models.CASCADE)
+    nSet=models.IntegerField(default=0)
     reps=models.IntegerField(blank=True, null=True)
     weight=models.CharField(max_length=30, blank=True, null=True)
     recovery_time=models.IntegerField(blank=True, null=True)

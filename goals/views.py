@@ -39,3 +39,25 @@ def view_completed_goals(request):
                 'goals': goals
             }
             return render(request, 'goals.html', context)
+
+def view_incompleted_goals(request):
+    if(request.user.is_authenticated):
+        if(request.method == 'GET'):
+            user=request.user
+            goals = Goal.objects.filter(user=user, completed=False)
+            context={
+                'goals': goals
+            }
+            return render(request, 'goals.html', context)
+
+def set_goal_completed(request, goal_id):
+    if(request.user.is_authenticated):
+        if(request.method == 'GET'):
+            goal = Goal.objects.get(id=goal_id)
+            goal.completed=True
+            goal.save()
+            goals=Goal.objects.filter(user=request.user)
+            context={
+                'goals': goals
+            }
+            return render(request, 'goals.html', context)

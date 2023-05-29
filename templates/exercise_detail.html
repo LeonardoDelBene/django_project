@@ -29,6 +29,12 @@
         <h1>Exercise Detail</h1>
         <p><strong>Name:</strong> {{ exercise.name }}</p>
         <p><strong>Description:</strong> {{ exercise.description }}</p>
+        <p><strong>Sets:</strong></p>
+        <ol>
+             {% for set in sets %}
+                <li>{{ set.reps }} reps</li>
+            {% endfor %}
+        </ol>
         <a href="{% url 'create_set' workout_id exercise.nExercise %}" class="btn btn-primary">Add set</a>
         <a href="{% url 'workout_detail' workout_id%}"class="btn btn-primary">Back to  workout</a>
         <a href="{% url 'profile_home' %}" class="btn btn-secondary">Back to Home</a>

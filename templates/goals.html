@@ -4,8 +4,41 @@
   <title>Goals Dashboard</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
   <style>
-    .completed {
-      text-decoration: line-through;
+    .completed-checkbox:checked + .checkmark {
+        background-color: green;
+    }
+    .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 16px;
+        height: 16px;
+        background-color: #eee;
+    }
+    .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+    }
+    .completed-checkbox:checked + .checkmark:after {
+        display: block;
+        left: 5px;
+        top: 1px;
+        width: 5px;
+        height: 10px;
+        border: solid white;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+    }
+    .back-btn {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+    }
+    .checkmark-container {
+        position: relative;
+        display: inline-block;
+        margin-right: 25px;
     }
   </style>
 </head>
@@ -20,6 +53,7 @@
           <th>Start Date</th>
           <th>End Date</th>
           <th>Completed</th>
+            <th>Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -29,11 +63,22 @@
             <td>{{ goal.goal }}</td>
             <td>{{ goal.start_date }}</td>
             <td>{{ goal.end_date }}</td>
-            <td><input type="checkbox" {% if goal.completed %}checked{% endif %} disabled></td>
+            <td>
+              <div class="checkmark-container">
+                <input type="checkbox" {% if goal.completed %}checked{% endif %} disabled class="completed-checkbox">
+                <span class="checkmark"></span>
+              </div>
+            </td>
+            <td>
+                <a href="{% url 'set_goal_completed' goal.id %}" class="btn btn-primary">Set Goal Completed</a>
+            </td>
           </tr>
         {% endfor %}
       </tbody>
     </table>
+    <a href="{% url 'profile_home' %}" class="btn btn-secondary back-btn">Back to Profile Home</a>
   </div>
 </body>
 </html>
+
+

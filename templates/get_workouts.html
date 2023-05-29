@@ -30,8 +30,10 @@
         .btn {
             margin-right: 5px;
         }
-        .mt-3 {
-            margin-top: 15px;
+        .back-btn {
+            position: absolute;
+            bottom: 10px;
+            right:10px;
         }
     </style>
 </head>
@@ -58,7 +60,7 @@
                 {% endfor %}
             </tbody>
         </table>
-    <a href="{% url 'profile_home' %}" class="btn btn-secondary mt-3" >Back to Profile Home</a>
+    <a href="{% url 'profile_home' %}" class="btn btn-secondary back-btn" >Back to Profile Home</a>
     </div>
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
