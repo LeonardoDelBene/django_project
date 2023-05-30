@@ -31,14 +31,12 @@ def create_exercise(request, workout_id, nExercise):
         name = request.POST['name']
         description = request.POST.get('description')
 
-        # Verifica se l'esercizio esiste già
         exercise = Exercise.objects.filter(workout=workout, nExercise=nExercise).first()
         if exercise is None:
             exercise = Exercise.objects.create(workout=workout, nExercise=nExercise, name=name, description=description)
             return redirect('exercise_detail', workout_id=workout_id, nExercise=nExercise)
         else:
-            # L'esercizio esiste già, puoi gestire questa situazione a tua discrezione
-            # Ad esempio, puoi mostrare un messaggio di errore o reindirizzare a un'altra pagina
+
             return redirect('exercise_detail', workout_id=workout_id, nExercise=nExercise)
 
     context = {
