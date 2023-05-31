@@ -7,39 +7,44 @@
         body {
             background-color: #f7f7f7;
         }
+
         .container {
             max-width: 800px;
             margin: 0 auto;
             margin-top: 100px;
             text-align: center;
         }
+
         h1 {
             margin-bottom: 20px;
         }
+
         p {
             margin-bottom: 10px;
         }
+
         .btn-primary {
             margin-right: 10px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Exercise Detail</h1>
-        <p><strong>Name:</strong> {{ exercise.name }}</p>
-        <p><strong>Description:</strong> {{ exercise.description }}</p>
-        <p><strong>Sets:</strong></p>
-        <ol>
-             {% for set in sets %}
-                <li>{{ set.reps }} reps</li>
-            {% endfor %}
-        </ol>
-        <a href="{% url 'create_set' workout_id exercise.nExercise %}" class="btn btn-primary">Add set</a>
-        <a href="{% url 'workout_detail' workout_id%}"class="btn btn-primary">Back to  workout</a>
-        <a href="{% url 'profile_home' %}" class="btn btn-secondary">Back to Home</a>
-    </div>
+<div class="container">
+    <h1>Exercise Detail</h1>
+    <p><strong>Name:</strong> {{ exercise.name }}</p>
+    <p><strong>Description:</strong> {{ exercise.description }}</p>
+    <p><strong>Sets:</strong></p>
+    <ol>
+        {% for set in sets %}
+            <li>{{ set.reps }} reps</li>
+        {% endfor %}
+    </ol>
+    <a href="{% url 'create_set' workout_id exercise.nExercise %}" class="btn btn-primary">Add set</a>
+    <a href="{% url 'delete_exercise' workout_id exercise.nExercise %}" class="btn-primary">Delete exercise</a>
+    <a href="{% url 'workout_detail' workout_id %}" class="btn btn-primary">Back to workout</a>
+    <a href="{% url 'profile_home' %}" class="btn btn-secondary">Back to Home</a>
+</div>
 
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </body>
 </html>

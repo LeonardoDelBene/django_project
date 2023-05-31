@@ -219,3 +219,16 @@ def delete_workout(request, workout_id):
         'workouts': workouts,
     }
     return render(request, 'get_workouts.html', context=context)
+
+def delete_exercise(request, workout_id, nExercise):
+    Exercise.delete(self=Exercise.objects.get(workout_id=workout_id, nExercise=nExercise))
+    n = Exercise.objects.filter(workout_id=workout_id).count() + 1
+    workout = Workout.objects.get(id=workout_id)
+    exercises = Exercise.objects.filter(workout_id=workout_id)
+    context = {
+        'workout': workout,
+        'exercises': exercises,
+        'workout_id': workout_id,
+        'nes': n
+    }
+    return render(request, 'workout_detail.html', context=context)
