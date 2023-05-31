@@ -187,3 +187,35 @@ def get_reps_history(request,workout_id, nExercise ,set_id):
         'nExercise': nExercise,
     }
     return render(request, 'get_reps_history.html', context=context)
+
+def delete_reps_history(request,workout_id, nExercise ,set_id, reps_id):
+    Reps_Tracking.delete(self=Reps_Tracking.objects.get(id=reps_id))
+    set = Set.objects.get(id=set_id)
+    reps_track = Reps_Tracking.objects.filter(set=set)
+    context = {
+        'reps_track': reps_track,
+        'set': set,
+        'workout_id': workout_id,
+        'nExercise': nExercise,
+    }
+    return render(request, 'get_reps_history.html', context=context)
+
+def delete_weight_history(request,workout_id, nExercise ,set_id, weight_id):
+    Weight_Tracking.delete(self=Weight_Tracking.objects.get(id=weight_id))
+    set = Set.objects.get(id=set_id)
+    weight_track = Weight_Tracking.objects.filter(set=set)
+    context = {
+        'weight_track': weight_track,
+        'set': set,
+        'workout_id': workout_id,
+        'nExercise': nExercise,
+    }
+    return render(request, 'get_weight_history.html', context=context)
+
+def delete_workout(request, workout_id):
+    Workout.delete(self=Workout.objects.get(id=workout_id))
+    workouts = Workout.objects.filter(user=request.user)
+    context = {
+        'workouts': workouts,
+    }
+    return render(request, 'get_workouts.html', context=context)

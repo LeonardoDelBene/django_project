@@ -51,6 +51,9 @@
                     <td>{{ tracking.id }}</td>
                     <td>{{ tracking.weight }}</td>
                     <td>{{ tracking.date }}</td>
+                <td>
+                    <a href="{% url 'delete_weight_history' workout_id nExercise set.id tracking.id%}"class="btn btn-primary">Delete Weight</a>
+                </td>
                 </tr>
                 {% endfor %}
             </tbody>
