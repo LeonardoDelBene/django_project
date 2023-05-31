@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Weight Tracking List</title>
+    <title>Reps Tracking List</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <style>
         body {
@@ -36,20 +36,20 @@
 </head>
 <body>
     <div class="container">
-        <h1>Weight Tracking List</h1>
+        <h1>Reps Tracking List</h1>
         <table>
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Weight</th>
+                    <th>Reps</th>
                     <th>Date</th>
                 </tr>
             </thead>
             <tbody>
-                {% for tracking in weight_track %}
+                {% for tracking in reps_track %}
                 <tr>
                     <td>{{ tracking.id }}</td>
-                    <td>{{ tracking.weight }}</td>
+                    <td>{{ tracking.reps }}</td>
                     <td>{{ tracking.date }}</td>
                 </tr>
                 {% endfor %}

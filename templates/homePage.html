@@ -22,13 +22,44 @@
         .btn {
             margin-top: 10px;
         }
+        button {
+ width: 9em;
+ height: 3em;
+ border-radius: 30em;
+ font-size: 15px;
+ font-family: inherit;
+ border: none;
+ position: relative;
+ overflow: hidden;
+ z-index: 1;
+ box-shadow: 6px 6px 12px #c5c5c5,
+             -6px -6px 12px #ffffff;
+}
+
+button::before {
+ content: '';
+ width: 0;
+ height: 3em;
+ border-radius: 30em;
+ position: absolute;
+ top: 0;
+ left: 0;
+ background-image: linear-gradient(to right,blueviolet,dodgerblue);
+ transition: .5s ease;
+ display: block;
+ z-index: -1;
+}
+
+button:hover::before {
+ width: 9em;
+}
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Welcome to your Fitness Website</h1>
-        <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
-        <a href="{% url 'register' %}" class="btn btn-secondary">Register</a>
+        <button><a href="{% url 'login' %}">Login</a></button>
+        <button><a href="{% url 'register' %}">Register</a></button>
     </div>
 </body>
 </html>

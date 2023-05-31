@@ -32,3 +32,9 @@ class Weight_Tracking(models.Model):
     weight = models.CharField(max_length=30)
     date = models.DateField(auto_now=True)
 
+class Reps_Tracking(models.Model):
+    id = models.AutoField(primary_key=True)
+    set = models.ForeignKey('Set', on_delete=models.CASCADE, related_name='reps_trackings')
+    reps = models.IntegerField()
+    date = models.DateField(auto_now=True)
+

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Set Reps</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <style>
+    .form-group {
+      margin-bottom: 20px;
+    }
+    button {
+ width: 9em;
+ height: 3em;
+ border-radius: 30em;
+ font-size: 15px;
+ font-family: inherit;
+ border: none;
+ position: relative;
+ overflow: hidden;
+ z-index: 1;
+ box-shadow: 6px 6px 12px #c5c5c5,
+             -6px -6px 12px #ffffff;
+}
+
+button::before {
+ content: '';
+ width: 0;
+ height: 3em;
+ border-radius: 30em;
+ position: absolute;
+ top: 0;
+ left: 0;
+ background-image: linear-gradient(to right, blueviolet,dodgerblue);
+ transition: .5s ease;
+ display: block;
+ z-index: -1;
+}
+
+button:hover::before {
+ width: 9em;
+}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Set Reps</h1>
+     <form method="post" action="{% url 'set_reps' workout_id nExercise set_id %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="weight">Reps:</label>
+                <input type="number" class="form-control" id="reps" name="reps" required>
+            </div>
+            <button type="submit" class="">Set Reps</button>
+        </form>
+  </div>
+</body>
+</html>

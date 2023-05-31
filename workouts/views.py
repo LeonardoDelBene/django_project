@@ -6,7 +6,7 @@ from django.shortcuts import render
 from django.shortcuts import render, redirect
 from django.template import context
 
-from .models import Workout, Exercise, Set, Weight_Tracking
+from .models import Workout, Exercise, Set, Weight_Tracking, Reps_Tracking
 from django.shortcuts import render, get_object_or_404
 
 
@@ -155,3 +155,35 @@ def get_weight_history(request,workout_id, nExercise ,set_id):
         'nExercise': nExercise,
     }
     return render(request, 'get_weight_history.html', context=context)
+
+def set_reps(request,workout_id, nExercise, set_id):
+    if(request.method=='POST'):
+        set = Set.objects.get(id=set_id)
+        set.reps = request.POST.get('reps')
+        set.save()
+        Reps_Tracking.objects.create(set=set, reps=set.reps)
+        exercise = Exercise.objects.get(workout_id=workout_id, nExercise=nExercise)
+        sets = Set.objects.filter(exercise=exercise, )
+        context = {
+            'sets': sets,
+            'workout_id': workout_id,
+            'nExercise': nExercise,
+        }
+        return render(request, 'get_sets.html', context=context)
+    context = {
+        'workout_id': workout_id,
+        'nExercise': nExercise,
+        'set_id': set_id,
+    }
+    return render(request, 'set_reps.html', context=context)
+
+def get_reps_history(request,workout_id, nExercise ,set_id):
+    set = Set.objects.get(id=set_id)
+    reps_track = Reps_Tracking.objects.filter(set=set)
+    context = {
+        'reps_track': reps_track,
+        'set': set,
+        'workout_id': workout_id,
+        'nExercise': nExercise,
+    }
+    return render(request, 'get_reps_history.html', context=context)

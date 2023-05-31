@@ -25,6 +25,18 @@
         .btn-primary {
             margin-right: 10px;
         }
+        .btn-custom {
+            background-color: blueviolet;
+            color: white;
+        }
+        .btn-custom-1{
+            background-color: #3ad1ff;
+            color: white;
+        }
+        .btn-custom-2{
+            background-color: #7224ff;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -37,6 +49,7 @@
                     <th>Repetitions</th>
                     <th>Weight</th>
                     <th>Rest Time</th>
+                    <th>Set Reps</th>
                     <th>Set Weight</th>
                     <th>Weight History</th>
                 </tr>
@@ -49,10 +62,16 @@
                     <td>{{ set.weight }} Kg</td>
                     <td>{{ set.recovery_time }} seconds </td>
                     <td>
-                        <a href="{% url 'set_weight' workout_id nExercise set.id  %}" class="btn btn-primary">Set Weight</a>
+                        <a href="{% url 'set_reps' workout_id nExercise set.id  %}" class="btn btn-primary">Set Reps</a>
                     </td>
                     <td>
-                        <a href="{% url 'weight_history' workout_id nExercise set.id%}"class="btn btn-primary">View Weight History</a>
+                        <a href="{% url 'reps_history' workout_id nExercise set.id%}"class="btn btn-custom-1">View Reps History</a>
+                    </td>
+                    <td>
+                        <a href="{% url 'set_weight' workout_id nExercise set.id  %}" class="btn btn-custom">Set Weight</a>
+                    </td>
+                    <td>
+                        <a href="{% url 'weight_history' workout_id nExercise set.id%}"class="btn btn-custom-2">View Weight History</a>
                     </td>
                 </tr>
                 {% endfor %}
