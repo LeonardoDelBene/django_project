@@ -9,4 +9,4 @@ class SignUpView(generic.CreateView):
     template_name = 'register.html'
 
 def homePage_view(request):
-    return render(request, '../index.html')
+    return render(request, '../templates/index.html')
