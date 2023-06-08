@@ -138,5 +138,5 @@ CORS_ORIGIN_WHITELIST = [
     # Altri domini attendibili se presenti
 ]
 
-CSRF_COOKIE_DOMAIN = 'web-production-dd92.up.railway.app/'  # Imposta il dominio del cookie CSRF
+CSRF_COOKIE_DOMAIN = 'web-production-dd92.up.railway.app'  # Imposta il dominio del cookie CSRF
 
