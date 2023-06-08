@@ -131,11 +131,11 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CSRF_COOKIE_SECURE = True  # Imposta su True se stai utilizzando HTTPS, False altrimenti
+CSRF_COOKIE_SECURE = False  # Imposta su True se stai utilizzando HTTPS, False altrimenti
 
 CORS_ORIGIN_WHITELIST = [
     'https://web-production-dd92.up.railway.app',
-    # Altri domini attendibili se presenti
+
 ]
 
 CSRF_COOKIE_DOMAIN = 'web-production-dd92.up.railway.app'  # Imposta il dominio del cookie CSRF
