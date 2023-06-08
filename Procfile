@@ -1,1 +1,1 @@
-gunicorn django_project.wsgi --log-file /Log.log
+web: gunicorn django_project.wsgi --log-file - --bind
