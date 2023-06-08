@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'account.apps.AccountConfig',
     'goals.apps.GoalsConfig',
     'workouts.apps.WorkoutsConfig',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -51,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'django_project.urls'
@@ -138,4 +140,4 @@ CORS_ORIGIN_WHITELIST = [
 ]
 
 CSRF_COOKIE_DOMAIN = 'web-production-dd92.up.railway.app'  # Imposta il dominio del cookie CSRF
-
+CSRF_TRUSTED_ORIGINS = ['https://web-production-dd92.up.railway.app']
