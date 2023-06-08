@@ -133,3 +133,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CSRF_COOKIE_SECURE = True  # Imposta su True se stai utilizzando HTTPS, False altrimenti
 
+CORS_ORIGIN_WHITELIST = [
+    'https://web-production-dd92.up.railway.app',
+    # Altri domini attendibili se presenti
+]
+
