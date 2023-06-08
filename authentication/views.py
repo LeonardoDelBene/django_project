@@ -3,22 +3,21 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic
 from django.views.decorators.csrf import csrf_protect
+from django.views.generic import CreateView
 
 
 @csrf_protect
-def signup_view(request):
+def register_view(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect(reverse_lazy('login'))
+            return redirect('login')
     else:
         form = UserCreationForm()
 
-    context = {
-        'form': form
-    }
-    return render(request, 'register.html', context)
+    return render(request, '../templates/register.html', {'form': form})
+
 
 
 def homePage_view(request):
