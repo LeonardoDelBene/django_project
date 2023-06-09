@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from account.views import ProfileHomeView
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,4 +25,5 @@ urlpatterns = [
     path('accounts/profile/', include('account.urls')),
     path('goals/', include('goals.urls')),
     path('workouts/', include('workouts.urls')),
+    path('calendar/', include('Calendar.urls')),
 ]
