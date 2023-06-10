@@ -36,17 +36,8 @@
                       <td>
                           {{ day }}
                           {% if day in workout_dict %}
-                              <br>
-                              { workoout_dict[day].name }
-                              {% else %}
-                              <form action="{% url 'add_workout' %}" method="POST">
-                                  {% csrf_token %}
-                                  <input type="hidden" name="year" value="{{ year }}">
-                                  <input type="hidden" name="month" value="{{ month }}">
-                                  <input type="hidden" name="day" value="{{ day }}">
-                                  {{ form.workout }}
-                                  <button type="submit" class="btn btn-primary">Aggiungi workout</button>
-                              </form>
+                              {% load get_workout_for_day %}
+                              {{ day|get_workout_for_day:workout_dict }}
                           {% endif %}
                       </td>
                   {% endfor %}
@@ -60,10 +51,10 @@
     <div class="text-center mt-4">
       <a href="?year={{ prev_year }}&month={{ prev_month }}" class="btn btn-primary mr-2">Mese Precedente</a>
       <a href="?year={{ next_year }}&month={{ next_month }}" class="btn btn-primary">Mese Successivo</a>
+        <a href="{% url 'add_workout' %}"  class="btn btn-primary">Add Workout</a>
     </div>
   <a href="{% url 'profile_home' %}" class="btn btn-secondary back-btn" >Back to Profile Home</a>
   </div>
 </body>
 
 </html>
-
