@@ -20,13 +20,13 @@
         <table class="table table-bordered">
           <thead>
             <tr>
-              <th>Domenica</th>
               <th>Lunedì</th>
               <th>Martedì</th>
               <th>Mercoledì</th>
               <th>Giovedì</th>
               <th>Venerdì</th>
               <th>Sabato</th>
+                <th>Domenica</th>
             </tr>
           </thead>
           <tbody>
@@ -36,8 +36,10 @@
                       <td>
                           {{ day }}
                           {% if day in workout_dict %}
-                              {% load get_workout_for_day %}
-                              {{ day|get_workout_for_day:workout_dict }}
+                              <div style="background: #f8ff3c">
+                                  {% load get_workout_for_day %}
+                                  {{ day|get_workout_for_day:workout_dict }}
+                              </div>
                           {% endif %}
                       </td>
                   {% endfor %}
