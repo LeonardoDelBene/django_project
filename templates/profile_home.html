@@ -7,18 +7,22 @@
         body {
             background-color: #f7f7f7;
         }
+
         .container {
             max-width: 800px;
             margin: 0 auto;
             margin-top: 100px;
             text-align: center;
         }
+
         h1 {
             margin-bottom: 20px;
         }
+
         p {
             margin-bottom: 30px;
         }
+
         .logout-btn {
             position: fixed;
             top: 10px;
@@ -26,25 +30,36 @@
         }
 
         .btn-custom {
-        background-color:blueviolet;
-        color: white;
+            background-color: blueviolet;
+            color: white;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome, {{ user.username }}</h1>
-        <a href="{% url 'home' %}" class="btn btn-secondary logout-btn">Logout</a>
-        <a href="{% url 'goals' %}" class="btn btn-custom" >View all Goals</a>
-        <a href="{% url 'create_goals' %}" class="btn btn-custom">Create a Goal</a>
-        <a href="{% url 'view_completed_goals' %}" class="btn btn-custom">View Completed Goals</a>
-        <a href="{% url 'view_incomplete_goals' %}" class="btn btn-custom">View Incomplete Goals</a>
-        <a href="{% url 'create_workout' %}" class="mt-2 btn btn-primary">Create a Workout</a>
-        <a href="{% url 'get_workouts' %}"class="mt-2 btn btn-primary">View Workout</a>
-        <a href="{% url 'calendar' %}" class="mt-2 btn btn-primary">Calendar</a>
-    </div>
+<div class="container">
+    <h1>Welcome, {{ user.username }}</h1>
+    <div class="row">
+        <div class="col-sm-12 col-md-6">
+            <h2>Goals</h2>
+            <a href="{% url 'goals' %}" class="btn btn-custom">View all Goals</a>
+            <a href="{% url 'create_goals' %}" class="btn btn-custom">Create a Goal</a>
+            <a href="{% url 'view_completed_goals' %}" class="btn btn-custom">View Completed Goals</a>
+            <a href="{% url 'view_incomplete_goals' %}" class="btn btn-custom">View Incomplete Goals</a>
 
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+        </div>
+        <div class="col-sm-12 col-md-6">
+            <h2>Workouts</h2>
+            <a href="{% url 'create_workout' %}" class="mt-2 btn btn-primary">Create a Workout</a>
+            <a href="{% url 'get_workouts' %}" class="mt-2 btn btn-primary">View Workout</a>
+        </div>
+        <div class="col-sm-12 col-md-6">
+            <h2>Calendar</h2>
+            <a href="{% url 'calendar' %}" class="mt-2 btn btn-primary">Calendar</a>
+        </div>
+    </div>
+    <a href="{% url 'home' %}" class="btn btn-secondary logout-btn">Logout</a>
+</div>
 </body>
 </html>
 
